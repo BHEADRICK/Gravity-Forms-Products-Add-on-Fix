@@ -1,35 +1,13 @@
-Plugin Boilerplate
+Gravity Forms Product Add-on Fix
 ==========================
 
-This is a basic scaffold for a new WordPress plugin based on the generator found
-at http://wppb.me/
+## Synopsis
+At some point after Gravity Forms v1.9.10.2, WooCommerce GF Product Forms Add-on stopped working, in that the price did not display on product pages.
 
-There is also a gulp action to zip the build files (excluding the dev files), name the zip file as the enclosing folder name, and upload it to an S3 bucket
+The issue is that with newer versions, a Total field is required to be on the form, but there was no conversion in the upgrade path to add this or notify the user that this is missing.
 
-##Requirements
+If you have several forms, this can be a pain to have to do manually, so I created this plugin to update all product forms, adding a total field if one is missing.
 
-npm and gulp should be installed globally
+All forms will be checked for woocommerce-related fields, and if a total field is missing from the form, it will be added at the end.
 
-##Installation
-
-After unzipping or cloning, run the following in Terminal (Mac/Linux) or gitbash (Windows):
-
-npm update
-
-Then you can run the following to name the plugin:
-
-gulp rename --name="Name of the Plugin"
-
-To also rename the containing folder, you'll also need to run:
-
-gulp move --name="Name of the Plugin"
-
-##Deploy
-
-To zip up the plugin and upload it to an S3 bucket:
-
-Update the gulpfile with your s3 creds and bucket name, and then run:
-
-gulp deploy
-
-(The zipped file will be located in the plugins directory)
+This will happen when the plugin is activated. You can deactivate it immediately afterwards.
